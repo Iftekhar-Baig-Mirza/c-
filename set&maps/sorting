@@ -1,0 +1,67 @@
+Problem description.
+Chaitya is a great problem solver. He found that most of his problems could be solved by arranging them in a particular order. The problem input consists of N. numbers, smaller than or equal to M. Chaitya’s analysis consists of sorting this sequence according to their occurrences.
+
+The output must be sorted so that for two numbers A and B, A will appear before B if the number of times A appears in the original order is larger than the number of times B does. If the number of occurrences is equal, the number whose value appears sooner in the input should appear sooner in the sorted sequence.
+
+Help Chaitya by creating a custom sorting tool.
+
+Input
+First line of input contains two integers, N, length of message, and M, the number from task description. Next line contains N integers smaller than or equal to M.
+
+.
+Output
+Output should contain N numbers in the required sequence.
+
+Constraints
+1 ≤ N ≤ 1000
+1 ≤ M ≤ 10^5
+Example 1 :
+Input
+7 3
+
+2 3 3 3 2 1 2
+
+Output
+2 2 2 3 3 3 1
+
+Example 2 :
+Input
+4 2
+
+2 1 2 2
+
+Output
+2 2 2 1
+
+
+//code for the above problem
+
+
+#include <bits/stdc++.h>
+using namespace std;
+map<int,int>oc,mi;
+bool comp(int a,int b){
+    if(oc[a]!=oc[b])
+        return oc[a]>oc[b];
+    else
+        return mi[a]<mi[b];
+}
+int main()
+{
+    int n,i,k;
+    cin>>n>>k;
+    vector<int>v(n);
+    for(i=0;i<n;i++){
+        cin>>v[i];
+        oc[v[i]]++;
+        if(mi.find(v[i])==mi.end()){
+            mi[v[i]]=i;
+        }
+    }
+    sort(v.begin(),v.end(),comp);
+    for(i=0;i<n;i++){
+        cout<<v[i]<<" ";
+    }
+    return 0;
+//
+}

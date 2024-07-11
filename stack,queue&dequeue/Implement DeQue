@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int t,val; cin>>t;
+   deque<int> dq;
+   while(t--){
+       string str;
+      cin>>str;
+       if(str=="pop_front"){
+           if(!dq.empty()){
+               cout<<dq.front()<<endl;
+               dq.pop_front();
+           }else
+           {
+               cout<<"Empty"<<endl;
+           }
+       }
+       else if(str=="pop_back"){
+           if(!dq.empty()){
+               cout<<dq.back()<<endl;
+               dq.pop_back();
+           }else
+           {
+               cout<<"Empty"<<endl;
+           }
+       }
+       else if(str=="push_front"){
+           cin>>val;
+           dq.push_front(val);
+       }
+       else{
+           cin>>val;
+           dq.push_back(val);
+       }
+       //my code
+   }
+}

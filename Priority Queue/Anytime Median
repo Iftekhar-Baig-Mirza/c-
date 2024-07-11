@@ -1,0 +1,59 @@
+Given an integer array, print the median for the sub-array 0 to i, for every i, 0<=i<=N-1.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by 2T lines - the first line contains N - the size of the array. The second line contains N integers - the elements of the array.
+
+Constraints
+
+30 points
+1 <= T <= 100
+1 <= N <= 103
+
+70 points
+1 <= T <= 100
+1 <= N <= 104
+
+General Constraints
+-104 <= A[i] <= 104
+
+Output Format
+
+For each test case, print the median for the sub-array 0 to i, for every i, separated by space. Print new line between output of different test cases.
+Note: In case of even length sub-array, print the smaller element as the median.
+
+
+//code for the above problem
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t,n,i,x;
+    cin>>t;
+    while(t--){
+        cin>>n;
+        priority_queue<int>max_pq;
+        priority_queue<int,vector<int>,greater<int>>min_pq;
+        for(i=0;i<n;i++){
+            cin>>x;
+            if(max_pq.empty()||x<=max_pq.top()){
+                max_pq.push(x);
+            }
+            else{
+                min_pq.push(x);
+            }
+            if(max_pq.size()>min_pq.size()+1){
+                min_pq.push(max_pq.top());
+                max_pq.pop();
+            }
+            else if(min_pq.size()>max_pq.size()){
+                max_pq.push(min_pq.top());
+                min_pq.pop();
+            }
+            cout<<max_pq.top()<<" ";
+        }
+        cout<<"\n";
+    }
+//my code
+}

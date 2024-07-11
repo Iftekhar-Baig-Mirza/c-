@@ -1,0 +1,44 @@
+You are given a series of daily price quotes for a stock and you need to calculate span of stock’s price for each day. The span Si of the stock’s price on current day i is defined as the maximum number of consecutive days just before the current day[including the current day], on which the price of the stock is less than or equal to its price on the current day.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by 2T lines, the first line contains N - the size of the array. The second line contains N integers - the elements of the array, ith element denotes the stock price on ith day.
+
+Constraints
+
+1 <= T <= 200
+1 <= N <= 104
+0 <= A[i] <= 104
+
+Output Format
+
+For each test case, print space-separated Stock Span Array, separated by new line.
+
+//code for the above problem
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int t,n,i;
+    cin>>t;
+    while(t--){
+        cin>>n;
+        vector<int>v(n);
+        stack<int>st;
+        for(i=0;i<n;i++){
+            cin>>v[i];
+        }
+        for(i=0;i<n;i++){
+            while(!st.empty()&&v[i]>=v[st.top()]){
+                st.pop();
+            }
+            if(st.empty())
+                cout<<i+1<<" ";
+            else
+                cout<<(i-st.top())<<" ";
+            st.push(i);
+        }
+        cout<<"\n";
+    }
+//my code
+}

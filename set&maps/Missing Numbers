@@ -1,0 +1,60 @@
+Given two arrays of integers, find which elements in the second array are missing from the first array.
+
+Example
+
+
+The  array is the orginal list. The numbers missing are .
+
+Notes
+
+If a number occurs multiple times in the lists, you must ensure that the frequency of that number in both lists is the same. If that is not the case, then it is also a missing number.
+Return the missing numbers sorted ascending.
+Only include a missing number once, even if it is missing multiple times.
+The difference between the maximum and minimum numbers in the original list is less than or equal to .
+Function Description
+
+Complete the missingNumbers function in the editor below. It should return a sorted array of missing numbers.
+
+missingNumbers has the following parameter(s):
+
+int arr[n]: the array with missing numbers
+int brr[m]: the original array of numbers
+Returns
+
+int[]: an array of integers
+Input Format
+
+There will be four lines of input:
+
+ - the size of the first list, 
+The next line contains  space-separated integers 
+ - the size of the second list, 
+The next line contains  space-separated integers 
+
+
+//code for the above problem
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int n,m,a;
+   cin>>n;
+   map<int,int> mp;
+   for(int i=0;i<n;i++){
+       cin>>a;
+       mp[a]++;
+   }
+   cin>>m;
+    for(int i=0;i<m;i++){
+       cin>>a;
+       mp[a]--;
+   }
+   for(auto p:mp){
+       if(p.second!=0){
+           cout<<p.first<<" ";
+       }
+   }
+//my code
+}

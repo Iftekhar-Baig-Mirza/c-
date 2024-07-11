@@ -1,0 +1,49 @@
+Given a string of characters, find the first repeating character.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by T lines, each line contains a single string of characters.
+
+Constraints
+
+1 <= T <= 1000
+'a' <= str[i] <= 'z'
+1 <= len(str) <= 104
+
+Output Format
+
+For each test case, print the first repeating character, separated by newline. If there are none, print '.'.
+
+
+//code for the above problem
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--){
+       string str;
+      cin>>str;
+        unordered_map<char,int> mp;
+      for(int i=0;i<str.length();i++){
+          
+          mp[str[i]]++;
+      }
+      char ch='.';
+     for(int i=0;i<str.length();i++){
+         if(mp[str[i]]>1){
+             ch=str[i];
+             break;
+         }
+        else{
+            ch='.';
+        }
+     }
+      cout<<ch<<"\n";
+  
+  }
+  //my code    
+}

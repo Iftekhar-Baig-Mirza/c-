@@ -1,0 +1,48 @@
+The executive chef is trying to bring some competitive spirit into his kitchen. He wants to split the chefs into two teams based on their age - he'll form the young and the old team. To make it fair, he will split them evenly or give the young team one person advantage when there is an odd number of chefs. Ages of all employees are unique. The executive chef also rated all chefs according to their cooking skills. Rating of a team is equal to the sum of ratings of its members. The chefs have developed a habit of coming to work late. The executive chef wants to keep the teams as fair as possible at all times and is therefore forced to change the teams each time one of the chefs comes to work in the morning. He needs your help with this task.
+
+Input
+The first line contains the number of chefs N. The following N lines describe the chefs in order as they come to work. Each chef is described by two integers, his or her age Ai and rating Ri.
+
+Output
+Every time a new chef joins the kitchen, output the absolute difference between team ratings.
+
+
+//code for the above problem
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef pair<int,int> pii;
+int main(){
+    int n,i,age,rat;
+    int y_r=0,o_r=0;
+    priority_queue<pii> young;
+    priority_queue<pii,vector<pii>,greater<pii>> old;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>age>>rat;
+        if(young.size()==0|| age<=young.top().first){
+            young.push({age,rat});
+            y_r +=rat;
+        }
+        else{
+            old.push({age,rat});
+            o_r +=rat;
+        }
+        if(young.size()>old.size()+1){
+            old.push(young.top());
+            y_r -=young.top().second;
+            o_r +=young.top().second;
+            young.pop();
+        }
+        else if(old.size()>young.size()){
+            young.push(old.top());
+            o_r -=old.top().second;
+            y_r +=old.top().second;
+            old.pop();
+        }
+        cout<<abs(y_r-o_r)<<"\n";
+    }
+    //my code
+}

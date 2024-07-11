@@ -1,0 +1,56 @@
+You are given an integer array and a positive integer K. You have to tell if there exists a pair of integers in the given array such that ar[i]-ar[j]=K and i≠j.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by 2T lines, the first line contains N and K - the size of the array and the number K. The second line contains the elements of the array.
+
+Constraints
+
+40 points
+2 <= N <= 1000
+
+60 points
+2 <= N <= 100000
+
+General Constraints
+1 <= T <= 100
+-105 <= ar[i], K <= 105
+
+Output Format
+
+For each test case, print "true" if the arrays contains such elements, false otherwise, separated by new line.
+
+
+//code for the above problem
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t,n,k,i,a;
+    cin>>t;
+    while(t--){
+        cin>>n>>k;
+        unordered_set<int>s;
+        bool flag=false;
+        for(i=0;i<n;i++)
+        {
+            cin>>a;
+            if(s.find(a-k)!=s.end()||s.find(a+k)!=s.end()){
+                flag=true;
+            }
+            else
+            {
+                s.insert(a);
+            }
+        }
+        if(flag)
+        {
+            cout<<"true"<<"\n";
+        }
+        else
+        {
+            cout<<"false"<<"\n";
+        }
+    }
+}

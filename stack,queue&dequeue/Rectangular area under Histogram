@@ -1,0 +1,57 @@
+Given height of adjacent buildings, find the largest rectangular area possible, where the largest rectangle can be made of a number of contiguous buildings. For simplicity, assume that all buildings have same width and the width is 1 unit.
+Note: The sides of rectangle has to be parallel to the axes.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by 2T lines - the first line contains N - the number of buildings. The second line contains the height of the buildings.
+
+Constraints
+
+50 points
+1 <= T <= 100
+1 <= N <= 103
+1 <= A[i] <= 1000
+
+150 points
+1 <= T <= 100
+1 <= N <= 105
+1 <= A[i] <= 104
+
+Output Format
+
+For each test case, print the area of the largest possible rectangle, separated by new line.
+
+//code for the above problem
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t,n,k,i,j;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        vector<int> v(n);
+        stack<int> st;
+        for(i=0;i<n;i++)
+        {
+            cin>>v[i];
+        }
+        long int h,w,a=0;
+        for(i=0;i<=n;i++)
+        {
+            while(!st.empty() && (i==n || v[i] < v[st.top()]))
+            {
+                h=v[st.top()];
+                st.pop();
+                w=st.empty() ? i:i-st.top()-1;
+                a=max(a,(h*w));
+            }
+            st.push(i);
+        }
+        cout<<a<<"\n";
+    }
+}
+
+//my code

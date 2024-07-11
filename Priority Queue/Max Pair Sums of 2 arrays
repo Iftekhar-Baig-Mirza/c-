@@ -1,0 +1,78 @@
+Given 2 integer arrays - A & B, you can create new elements of the form : A[i] + B[j] where 0<=i,j<=N-1. You have to print the highest K elements of the newly created elements.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by 3T lines -
+1. The first line contains N: the size of the arrays and K: the number of elements to print.
+2. The second line contains N integers - the elements of A.
+3. The third line contains N integers - the elements of B.
+
+Constraints
+
+40 points
+1 <= T <= 100
+1 <= N <= 102
+1 <= K <= min(102, N*N)
+-104 <= A[i],B[i] <= 104
+
+60 points
+1 <= T <= 100
+1 <= N <= 103
+1 <= K <= min(103, N*N)
+-104 <= A[i],B[i] <= 104
+
+100 points
+1 <= T <= 100
+1 <= N <= 104
+1 <= K <= min(104, N*N)
+-104 <= A[i],B[i] <= 104
+
+Output Format
+
+For each test case, print the highest K elements separated by space in a sorted order. Print new line between output of different test cases.
+
+
+//code for the above problem
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int t,n,k,m,i,j;
+    cin>>t;
+    while(t--){
+        
+    cin>>n>>k;
+    vector<int> a(n),b(n),res;
+    priority_queue<int,vector<int>,greater<int>> pq;
+    for(i=0;i<n;i++){
+        cin>>a[i];
+    }
+     for(i=0;i<n;i++){
+        cin>>b[i];
+    }
+    sort(a.begin(),a.end(),greater<int>());
+     sort(b.begin(),b.end(),greater<int>());
+    for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            if(pq.size()<k){
+                pq.push(a[i]+b[j]);
+            }
+            else if(a[i]+b[j]>pq.top()){
+                pq.pop();
+                pq.push(a[i]+b[j]);
+            }
+            else{
+                break;
+            }
+        }
+    }
+    while(!pq.empty()){
+        res.push_back(pq.top());
+        pq.pop();
+    }
+    for(i=k-1;i>=0;i--){
+        cout<<res[i]<<" ";
+    }
+    cout<<"\n";
+}}
+//my code

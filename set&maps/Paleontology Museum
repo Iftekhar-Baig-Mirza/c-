@@ -1,0 +1,74 @@
+Your friend Ross is the supervisor of the Paleontology Museum. A specific number of fossils have been delivered to the museum however, the museum has a limited amount of space to exhibit those fossils. Needless to say, people get bored when they see the repetition of the same item. Ross being a supervisor wants to fill the museum with fossils in that limited space so that people visiting the museum do not get bored. Since Ross has a date with Rachel, he wants you to do this important job.
+
+Each fossil is represented by a Small letter of English alphabets. The head of the museum wants all of the space should be used to display the fossils. You know, if the person walks into the museum and sees a fossil which he has already seen, his boredom level increases by one. Your task is to fill the space of the museum with fossils such a way that the boredom level of the visitor be minimum.
+
+Note:- the boredom level cannot be negative and visitor will see each and every exibit fossil
+
+Input:
+First-line will contain 
+�
+T, the number of test cases. Then the test cases follow.
+Each test case contains a two-input 
+�
+N(Length of the array) and 
+�
+C (Empty spaces in the museum).
+Single Line containing 
+�
+N inputs 
+�
+1
+,
+�
+2
+,
+�
+3
+…
+�
+�
+a 
+1
+​
+ ,a 
+2
+​
+ ,a 
+3
+​
+ …a 
+n
+​
+ (fossils delivered to the museum)
+Output:
+Print in seprate line,the minimum boredom level of the visitor
+
+
+//the code for the above problem
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+ int t;
+ cin>>t;
+ while(t--){
+     int n,k;
+     cin>>n>>k;
+     string str;
+     cin>>str;
+     map<char,int> m;
+     for(int i=0;i<n;i++)
+     {
+         m[str[i]]++;
+         if(m[str[i]]==1)
+           k--;
+     }
+     if(k<0)
+       cout<<0<<endl;
+     else
+       cout<<k<<endl;
+ }
+//my code
+}
